@@ -1,0 +1,58 @@
+:root{--bg:#0F172A;--card:#1E293B;--line:#334155;--primary:#8B5CF6;--bright:#A78BFA;--blue:#3B82F6;--text:#fff;--muted:#CBD5E1}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% -10%,#2a1f5c 0,var(--bg) 55%) fixed;color:var(--text);font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;padding:16px}
+.header{text-align:center;margin:8px 0 20px}
+.header h1{margin:0;font-size:clamp(2rem,6vw,3rem);background:linear-gradient(90deg,var(--bright),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.header p{margin:6px 0 0;color:var(--muted)}
+.layout{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.card h2{margin:0 0 14px;font-size:1.15rem}
+.badge{font-size:.8rem;background:var(--primary);border-radius:99px;padding:2px 10px;margin-left:6px}
+.history{grid-column:1/-1}
+.add-row{display:flex;gap:8px}
+input[type=text]{flex:1;min-width:0;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:1rem}
+input[type=text]:focus{outline:2px solid var(--bright);border-color:transparent}
+.btn{border:0;border-radius:12px;padding:10px 16px;font-size:1rem;font-weight:600;color:var(--text);cursor:pointer;transition:transform .15s,filter .15s;min-height:44px}
+.btn:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.12)}
+.btn:focus-visible{outline:3px solid var(--bright);outline-offset:2px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--blue))}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.btn-small{min-height:36px;padding:6px 10px;font-size:.9rem;background:#334155}
+.btn-danger{background:#7f1d1d}
+.error{min-height:1.4em;margin:8px 0;color:#FCA5A5;font-size:.9rem}
+.item-list{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px;max-height:340px;overflow-y:auto}
+.item-list li{display:flex;align-items:center;gap:8px;background:var(--bg);border-radius:12px;padding:8px 10px}
+.dot{width:14px;height:14px;border-radius:50%;flex:none}
+.item-name{flex:1;overflow-wrap:anywhere}
+.stage{display:flex;flex-direction:column;align-items:center;gap:20px}
+.wheel-wrap{position:relative;width:100%;max-width:520px}
+#wheel{width:100%;height:auto;display:block}
+.pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:2;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:44px solid #FACC15;filter:drop-shadow(0 4px 4px rgba(0,0,0,.5))}
+.btn-spin{width:min(100%,320px);padding:16px;font-size:1.4rem;letter-spacing:.1em;background:linear-gradient(135deg,var(--primary),#EC4899);box-shadow:0 8px 24px rgba(139,92,246,.45)}
+.history-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.history-head h2{margin:0}
+.history-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.history-list li{display:flex;justify-content:space-between;gap:10px;background:var(--bg);border-radius:12px;padding:10px 14px;flex-wrap:wrap}
+.history-list .when{color:var(--muted);font-size:.9rem}
+.history-list .empty{justify-content:center;color:var(--muted)}
+.overlay{position:fixed;inset:0;background:rgba(2,6,23,.75);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+.overlay[hidden]{display:none}
+.modal{position:relative;overflow:hidden;background:var(--card);border:2px solid var(--primary);border-radius:24px;padding:32px 36px;text-align:center;width:min(100%,420px);box-shadow:0 0 50px rgba(139,92,246,.5);animation:pop .3s ease-out}
+.modal h2{margin:0 0 6px;font-size:1.8rem}
+.modal p{margin:4px 0;color:var(--muted)}
+.result{font-size:2rem;font-weight:800;color:#FACC15!important;margin:14px 0 22px!important;overflow-wrap:anywhere}
+.confetti span{position:absolute;top:-12px;width:8px;height:14px;opacity:.9;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(480px) rotate(540deg);opacity:0}}
+@keyframes pop{from{transform:scale(.8);opacity:0}}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr}
+  .stage{order:-1}
+  .history{order:3}
+  .modal{padding:26px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+  .modal{animation:none}
+  .confetti{display:none}
+}
